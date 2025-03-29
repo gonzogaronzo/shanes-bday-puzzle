@@ -72,8 +72,10 @@
   </style>
 </head>
 <body>
-  <h1 style="color: #FFD700;">🕓 Set the Time Circuits</h1>
-  <p class="prompt">Set your destination time to the day Doc Brown invented the flux capacitor.</p>
+  <h1 style="color: #FFD700;">
+    Great Scott! We've got to go back to the date that Doc Brown invented the flux capacitor to keep your gift from getting erased from history!
+  </h1>
+  <p class="prompt">Set your destination time:</p>
 
   <!-- Destination Time Panel -->
   <div class="panel">
@@ -127,37 +129,35 @@
 
   <script>
     // Populate day dropdown (1-31)
-    const daySelect = document.getElementById('day');
-    for (let i = 1; i <= 31; i++) {
-      const option = document.createElement('option');
+    var daySelect = document.getElementById('day');
+    for (var i = 1; i <= 31; i++) {
+      var option = document.createElement('option');
       option.textContent = i;
       option.value = i;
       daySelect.appendChild(option);
     }
 
     // Populate year dropdown (1950-1960)
-    const yearSelect = document.getElementById('year');
-    for (let y = 1950; y <= 1960; y++) {
-      const option = document.createElement('option');
+    var yearSelect = document.getElementById('year');
+    for (var y = 1950; y <= 1960; y++) {
+      var option = document.createElement('option');
       option.textContent = y;
       option.value = y;
       yearSelect.appendChild(option);
     }
 
     // Fill present time panel with current date
-    const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
-                    "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-    const now = new Date();
+    var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    var now = new Date();
     document.getElementById('presentMonth').innerText = months[now.getMonth()];
     document.getElementById('presentDay').innerText = String(now.getDate()).padStart(2, '0');
     document.getElementById('presentYear').innerText = now.getFullYear();
 
-    // Check the selected date and redirect if correct
     function checkTime() {
-      const month = document.getElementById('month').value;
-      const day = document.getElementById('day').value;
-      const year = document.getElementById('year').value;
-
+      var month = document.getElementById('month').value;
+      var day = document.getElementById('day').value;
+      var year = document.getElementById('year').value;
+      
       if (month === "November" && day === "5" && year === "1955") {
         window.location.href = "final.html";
       } else {
