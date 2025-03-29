@@ -2,35 +2,134 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Room 2: Decode the Message</title>
+  <title>Set the Time Circuits</title>
   <style>
-    body { font-family: monospace; background-color: black; color: lime; padding: 20px; }
-    .blurry { filter: blur(1px); }
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    body {
+      background-color: #1a1a1a;
+      font-family: 'Orbitron', sans-serif;
+      color: #00FF66;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .panel {
+      display: inline-block;
+      background-color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px #0f0;
+    }
+
+    .panel h2 {
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .cell {
+      background-color: black;
+      color: #FF3300;
+      padding: 10px 20px;
+      font-size: 24px;
+      border-radius: 4px;
+      border: 2px solid #666;
+      min-width: 90px;
+    }
+
+    select {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      padding: 5px;
+    }
+
+    #engage {
+      background-color: limegreen;
+      color: black;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 20px;
+      cursor: pointer;
+      box-shadow: 0 0 10px limegreen;
+    }
   </style>
 </head>
 <body>
-  <h1>Access Granted</h1>
-  <p>You’ve made it to Room 2.</p>
-  <p>But the next clue isn’t so obvious...</p>
+  <h1 style="color: #FFD700;">🕓 Set the Time Circuits</h1>
 
-  <pre class="blurry">
-  01001101 01101111 01101101 00100111 01110011 
-  00100000 01000011 01101100 01101111 01110011 
-  01100101 01110100
-  </pre>
+  <!-- Destination Time Panel -->
+  <div class="panel">
+    <h2>DESTINATION TIME</h2>
+    <div class="row">
+      <select id="month">
+        <option>--Month--</option>
+        <option>January</option><option>February</option><option>March</option>
+        <option>April</option><option>May</option><option>June</option>
+        <option>July</option><option>August</option><option>September</option>
+        <option>October</option><option>November</option><option>December</option>
+      </select>
+      <select id="day">
+        <option>--Day--</option>
+        ${[...Array(31)].map((_, i) => `<option>${i + 1}</option>`).join('')}
+      </select>
+      <select id="year">
+        <option>--Year--</option>
+        ${[...Array(11)].map((_, i) => `<option>${1950 + i}</option>`).join('')}
+      </select>
+    </div>
+  </div>
 
-  <p>Translate the binary to unlock the final room.</p>
+  <!-- Present Time Panel -->
+  <div class="panel">
+    <h2>PRESENT TIME</h2>
+    <div class="row">
+      <div class="cell" id="presentMonth">???</div>
+      <div class="cell" id="presentDay">??</div>
+      <div class="cell" id="presentYear">????</div>
+    </div>
+  </div>
 
-  <input type="text" id="binaryAnswer" placeholder="Enter the decoded message">
-  <button onclick="checkCode()">Submit</button>
+  <!-- Last Time Departed Panel -->
+  <div class="panel">
+    <h2>LAST TIME DEPARTED</h2>
+    <div class="row">
+      <div class="cell">OCT</div>
+      <div class="cell">26</div>
+      <div class="cell">1985</div>
+    </div>
+  </div>
+
+  <button id="engage" onclick="checkTime()">ENGAGE</button>
 
   <script>
-    function checkCode() {
-      var answer = document.getElementById('binaryAnswer').value;
-      if (answer.toLowerCase().includes("mom's closet")) {
+    // Fill present time
+    const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
+                    "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    const now = new Date();
+    document.getElementById('presentMonth').innerText = months[now.getMonth()];
+    document.getElementById('presentDay').innerText = String(now.getDate()).padStart(2, '0');
+    document.getElementById('presentYear').innerText = now.getFullYear();
+
+    function checkTime() {
+      const month = document.getElementById('month').value;
+      const day = document.getElementById('day').value;
+      const year = document.getElementById('year').value;
+
+      if (month === "November" && day === "5" && year === "1955") {
         window.location.href = "final.html";
       } else {
-        alert("Incorrect. Try again, Agent.");
+        alert("1.21 GIGAWATTS?! That’s not even the right day!");
       }
     }
   </script>
