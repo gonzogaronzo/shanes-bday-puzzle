@@ -154,16 +154,19 @@
     document.getElementById('presentYear').innerText = now.getFullYear();
 
     function checkTime() {
-      var month = document.getElementById('month').value;
-      var day = document.getElementById('day').value;
-      var year = document.getElementById('year').value;
-      
-      if (month === "November" && day === "5" && year === "1955") {
-        window.location.href = "final.html";
-      } else {
-        alert("1.21 GIGAWATTS?! That’s not even the right day!");
-      }
-    }
+  var month = document.getElementById('month').value;
+  var day = document.getElementById('day').value;
+  var year = document.getElementById('year').value;
+  
+  if (month === "November" && day === "5" && year === "1955") {
+    alert("Great Scott! Correct! Initiating time circuits...");
+    setTimeout(function() {
+      window.location.href = "final.html";
+    }, 2000);
+  } else {
+    alert("1.21 GIGAWATTS?! That’s not even the right day!");
+  }
+}
   </script>
 </body>
 </html>
