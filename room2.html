@@ -63,29 +63,42 @@
       cursor: pointer;
       box-shadow: 0 0 10px limegreen;
     }
+    
+    .prompt {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #FFD700;
+    }
   </style>
 </head>
 <body>
   <h1 style="color: #FFD700;">🕓 Set the Time Circuits</h1>
+  <p class="prompt">Set your destination time to the day Doc Brown invented the flux capacitor.</p>
 
   <!-- Destination Time Panel -->
   <div class="panel">
     <h2>DESTINATION TIME</h2>
     <div class="row">
       <select id="month">
-        <option>--Month--</option>
-        <option>January</option><option>February</option><option>March</option>
-        <option>April</option><option>May</option><option>June</option>
-        <option>July</option><option>August</option><option>September</option>
-        <option>October</option><option>November</option><option>December</option>
+        <option value="">--Month--</option>
+        <option>January</option>
+        <option>February</option>
+        <option>March</option>
+        <option>April</option>
+        <option>May</option>
+        <option>June</option>
+        <option>July</option>
+        <option>August</option>
+        <option>September</option>
+        <option>October</option>
+        <option>November</option>
+        <option>December</option>
       </select>
       <select id="day">
-        <option>--Day--</option>
-        ${[...Array(31)].map((_, i) => `<option>${i + 1}</option>`).join('')}
+        <option value="">--Day--</option>
       </select>
       <select id="year">
-        <option>--Year--</option>
-        ${[...Array(11)].map((_, i) => `<option>${1950 + i}</option>`).join('')}
+        <option value="">--Year--</option>
       </select>
     </div>
   </div>
@@ -113,7 +126,25 @@
   <button id="engage" onclick="checkTime()">ENGAGE</button>
 
   <script>
-    // Fill present time
+    // Populate day dropdown (1-31)
+    const daySelect = document.getElementById('day');
+    for (let i = 1; i <= 31; i++) {
+      const option = document.createElement('option');
+      option.textContent = i;
+      option.value = i;
+      daySelect.appendChild(option);
+    }
+
+    // Populate year dropdown (1950-1960)
+    const yearSelect = document.getElementById('year');
+    for (let y = 1950; y <= 1960; y++) {
+      const option = document.createElement('option');
+      option.textContent = y;
+      option.value = y;
+      yearSelect.appendChild(option);
+    }
+
+    // Fill present time panel with current date
     const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
                     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
     const now = new Date();
@@ -121,6 +152,7 @@
     document.getElementById('presentDay').innerText = String(now.getDate()).padStart(2, '0');
     document.getElementById('presentYear').innerText = now.getFullYear();
 
+    // Check the selected date and redirect if correct
     function checkTime() {
       const month = document.getElementById('month').value;
       const day = document.getElementById('day').value;
