@@ -160,8 +160,9 @@
   
   if (month === "November" && day === "5" && year === "1955") {
     alert("Great Scott! Correct! Initiating time circuits...");
+    console.log("Correct date entered. Redirecting to final.html...");
     setTimeout(function() {
-      window.location.href = "final.html";
+      window.location.assign("final.html");
     }, 2000);
   } else {
     alert("1.21 GIGAWATTS?! That’s not even the right day!");
