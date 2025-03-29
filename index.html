@@ -2,33 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Room 1: The Hidden Message</title>
+  <title>Room 1: Stuck in the Loop</title>
   <style>
-    body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
-    .hidden { font-weight: bold; color: #333; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+    }
   </style>
 </head>
 <body>
-  <h1>Welcome, Agent Shane!</h1>
-  <p>
-    Your mission begins now. Look closely at the text below and discover the hidden word.
-  </p>
-  <p>
-    This is a simple <span class="hidden">S</span>tory that may seem <span class="hidden">E</span>very ordinary, but hidden within it lies a <span class="hidden">C</span>lue.
-  </p>
-  <p>
-    Enter the password to proceed:
-  </p>
-  <input type="text" id="password" placeholder="Type the secret word">
-  <button onclick="checkPassword()">Submit</button>
+  <!-- Embedded GIF from the movie -->
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNW5yY25xbTZpOXl6YWF3NDlqcHVsOHdudWt3MGY4cG43MDA4cDk2diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Hd3V3QlJXwlk0y4dw8/giphy.gif" 
+       alt="Ned Ryerson stepping into the puddle" 
+       style="max-width: 100%; border-radius: 12px; margin-bottom: 20px;">
+       
+  <!-- Looping-style text -->
+  <h1>February 2nd. Again.</h1>
+  <p>Ned Ryerson appears out of nowhere. Again.</p>
+  <p>Phil steps off the curb. Again.</p>
+  <p><strong>SPLASH.</strong></p>
+  <p>You are stuck in the loop. Again.</p>
+  <p>What will Ned Ryerson exclaim once you get this right?</p>
+  
+  <!-- Answer input and button -->
+  <input type="text" id="answer" placeholder="Type your answer here">
+  <button onclick="checkAnswer()">Submit</button>
   
   <script>
-    function checkPassword() {
-      var pwd = document.getElementById('password').value;
-      if (pwd.toLowerCase() === 'sec') {
-         window.location.href = "room2.html";
+    function checkAnswer() {
+      // Get the answer, trim whitespace, and make it lowercase
+      var answer = document.getElementById('answer').value.trim().toLowerCase();
+      // List of acceptable answers
+      var validAnswers = ["bing", "bing!", "bing bing", "bing bing!"];
+      
+      if (validAnswers.includes(answer)) {
+        // Show Ned's exclamation
+        alert("BING! YOU NAILED IT, BABY! WHOA! WATCH THAT FIRST STEP, IT’S A DOOZY!");
+        // Redirect to Room 2 after a 2-second delay
+        setTimeout(function() {
+          window.location.href = "room2.html";
+        }, 2000);
       } else {
-         alert("That's not quite right, Agent. Try again!");
+        alert("Not quite, Agent. Try again!");
       }
     }
   </script>
