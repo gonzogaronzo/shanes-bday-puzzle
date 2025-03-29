@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Binary Decryption</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      padding: 40px;
+      text-align: center;
+    }
+    h1 {
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00;
+    }
+    .binary-box {
+      background: rgba(0, 255, 0, 0.05);
+      border: 1px solid #00ff00;
+      padding: 20px;
+      margin-top: 20px;
+      white-space: pre-wrap;
+      font-size: 18px;
+    }
+    input[type="text"] {
+      background: black;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      padding: 10px;
+      margin-top: 20px;
+      width: 300px;
+      font-size: 18px;
+    }
+    button {
+      margin-top: 20px;
+      background: #000;
+      border: 1px solid #00ff00;
+      color: #00ff00;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #002200;
+    }
+  </style>
+</head>
+<body>
+  <h1>Decrypt the Code</h1>
+  <div class="binary-box" id="binaryBox">
+    01010100 01101000 01100101<br>
+    00100000 01100111 01101001 01100110 01110100<br>
+    00100000 01101001 01110011<br>
+    00100000 01101000 01101001 01100100 01100100 01100101 01101110<br>
+    01101001 01101110<br>
+    00100000 01001101 01101111 01101101 00100111 01110011 00100000 01000011 01101100 01101111 01110011 01100101 01110100
+  </div>
+
+  <input type="text" id="answer" placeholder="Enter decrypted message">
+  <br>
+  <button onclick="checkAnswer()">Decrypt</button>
+
+  <script>
+    function checkAnswer() {
+      const answer = document.getElementById('answer').value.trim().toLowerCase();
+      if (answer.includes(\"mom\") && answer.includes(\"closet\")) {
+        alert(\"Correct! Follow the trail to Mom’s Closet...\");
+        window.location.href = \"room6.html\";
+      } else {
+        alert(\"Incorrect. Keep decoding...\");
+      }
+    }
+  </script>
+</body>
+</html>
